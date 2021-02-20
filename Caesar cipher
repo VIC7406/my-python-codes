@@ -1,0 +1,61 @@
+alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+
+encripted_message = ''
+def encript(orginal_message , shift_number):
+  global encripted_message
+  for letter in orginal_message:
+    indx = alpha.index(letter)
+    #print(f'the letter {letter} has index {indx}')
+    if indx + shift_number > 25:
+        encripted_indx = (indx + shift_number) - 26
+    else:
+        encripted_indx = indx + shift_number 
+    encripted_letter = alpha[encripted_indx]
+    encripted_message += encripted_letter
+  print(f'the encripted message {encripted_message} for orginal message {orginal_message}')
+
+decripted_message = ''
+def decript(encripted_message , shift_number):
+  global decripted_message
+  for letter in encripted_message:
+    indx = alpha.index(letter)
+    #print(f'the letter {letter} has index {indx}')
+    if indx - shift_number < 0:
+        decripted_indx = (indx - shift_number) + 26
+    else:
+        decripted_indx = indx - shift_number
+    decripted_letter = alpha[decripted_indx]
+    decripted_message += decripted_letter
+  
+  print(f'the decripted message {decripted_message} for encripted message {encripted_message} ')
+
+
+
+inp_val = {'E': 'Encript' ,'e': 'Encript', 'D' : 'Decript' ,'d' : 'Decript' , 'S': 'Stop','s': 'Stop'}
+
+def intro():
+  if inp in ['E','e','D','d']:
+    print(f'u have selected {inp_val[inp]}')
+  else:
+    print('u have selected either E or D')
+
+  if inp in ['E','e']:
+    orginal_message = input('type the original message : ')
+    shift_number = int(input('type the one digit shift number : '))
+    encript(orginal_message , shift_number)
+  elif inp in ['D','d']:
+    encripted_message = input('type the encripted message : ')
+    shift_number = int(input('type the one digit shift number : '))
+    decript(encripted_message , shift_number)
+  
+status = True
+while status:
+  inp = input('Type if u want to E for Encript or  D for Decript or S to stop : ')
+  if inp not in ['S','s']:
+    intro()
+  else:
+    status = False
+    print('u wish to stop')
+  
+
