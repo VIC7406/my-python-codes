@@ -1,0 +1,54 @@
+from IPython.display import clear_output
+# addition
+def add(n1 ,n2):
+    return n1 + n2
+
+# substration
+def sub(n1 ,n2):
+    return n1 - n2
+
+# multiplication
+def mul(n1 ,n2):
+    return n1 * n2
+
+# division
+def div(n1 ,n2):
+    return n1 / n2
+
+operations = {
+    '+' : add,
+    '-' : sub,
+    '*' : mul,
+    '/' : div
+}
+
+def calculator():
+  num1 = float(input("what's the first number : "))
+
+  for operator in operations:
+      print(operator, end = " ")
+  print('-  ')
+  result_f = 0
+  choice = True
+  while choice:
+      operation_symbol = input('pick another opertion u want for above result : ')
+      if operation_symbol not in ['+','-','*','/']:
+          print(f"u chose wrong operand , final result is {round(result_f,2)}")
+          choice = False
+          break
+      next_num = float(input("what's the next number :"))
+      cal_fn = operations[operation_symbol]
+      result_f = cal_fn(num1, next_num)
+      print(f"The Value of {num1} {operation_symbol} {next_num} is {round(result_f,2)} ")
+      start_or_stop = input("would u like to do more calculations if yes then Y , freash start then S : ")
+      if start_or_stop in ['Y','y']:
+          num1 = round(result_f,2)
+      elif start_or_stop in ['S','s']:
+          print(f"The final result is {round(result_f,2)}")
+          clear_output()
+          calculator()    
+      else:
+          choice = False
+          print(f"The final result is {round(result_f,2)}")
+
+calculator()         
